@@ -1,9 +1,16 @@
-#!/bin/bash
+continue_MD() {
+    if [[ ! -f "CONTCAR" ]]; then
+        echo "CONTCAR not found. Nothing to do."
+        return
+    fi
 
-a=$(ls -ltr | grep -c ^d)
-num=$(echo "$a + 1" | bc)
-mkdir "$num"
-find . -maxdepth 1 ! -name "$num" ! -name "." -exec cp -r {} "$num/" \;
-rm -rf slurm*
-mv CONTCAR POSCAR
-sbatch job
+    a=$(ls -ltr | grep -c ^d)
+    num=$(echo "$a + 1" | bc)
+    mkdir "$num"
+    find . -maxdepth 1 ! -name "$num" ! -name "." -exec cp -r {} "$num/" \;
+    rm -rf slurm*
+    mv CONTCAR POSCAR
+    echo "Files organized into directory $num and CONTCAR moved to POSCAR."
+}
+
+continue_MD
