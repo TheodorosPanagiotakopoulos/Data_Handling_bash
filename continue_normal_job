@@ -13,6 +13,4 @@ continue_MD() {
     echo "Files organized into directory $num and CONTCAR moved to POSCAR."
 }
 
-
-ttt
 continue_MD
