@@ -3,6 +3,7 @@ continue_MD() {
         echo "CONTCAR not found. Nothing to do."
         return
     fi
+
     a=$(ls -ltr | grep -c ^d)
     num=$(echo "$a + 1" | bc)
     mkdir "$num"
