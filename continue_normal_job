@@ -4,13 +4,22 @@ continue_MD() {
         return
     fi
 
-    a=$(ls -ltr | grep -c ^d)
-    num=$(echo "$a + 1" | bc)
-    mkdir "$num"
-    find . -maxdepth 1 ! -name "$num" ! -name "." -exec cp -r {} "$num/" \;
+    num=$(( $(ls -d RUN*/ 2>/dev/null | wc -l) + 1 ))
+    dir="RUN$num"
+    mkdir "$dir"
+
+    gzip OUTCAR
+
+    # Copy all files and folders except RUN*, . and slurm*
+    for f in *; do
+        [[ $f == "$dir" || $f == slurm* ]] && continue
+        cp -r "$f" "$dir/"
+    done
+
     rm -rf slurm*
+    rm -rf OUTCAR.gz
     mv CONTCAR POSCAR
-    echo "Files organized into directory $num and CONTCAR moved to POSCAR."
+    echo "Files organized into directory $dir and CONTCAR moved to POSCAR."
 }
 
 continue_MD
