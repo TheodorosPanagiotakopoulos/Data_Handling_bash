@@ -8,8 +8,6 @@ continue_MD() {
     dir="RUN$num"
     mkdir "$dir"
     gzip OUTCAR
-
-    # Copy all files and folders except RUN*, . and slurm*
     for f in *; do
         [[ $f == "$dir" || $f == slurm* ]] && continue
         cp -r "$f" "$dir/"
