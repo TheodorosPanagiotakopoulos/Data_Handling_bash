@@ -12,7 +12,6 @@ continue_MD() {
         [[ $f == "$dir" || $f == slurm* ]] && continue
         cp -r "$f" "$dir/"
     done
-
     rm -rf slurm*
     rm -rf OUTCAR.gz
     mv CONTCAR POSCAR
