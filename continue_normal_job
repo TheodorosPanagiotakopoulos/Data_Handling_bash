@@ -7,7 +7,6 @@ continue_MD() {
     num=$(( $(ls -d RUN*/ 2>/dev/null | wc -l) + 1 ))
     dir="RUN$num"
     mkdir "$dir"
-
     gzip OUTCAR
 
     # Copy all files and folders except RUN*, . and slurm*
