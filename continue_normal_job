@@ -1,3 +1,5 @@
+# /bin/bash
+
 continue_MD() {
     if [[ ! -f "CONTCAR" ]]; then
         echo "CONTCAR not found. Nothing to do."
@@ -14,7 +16,6 @@ continue_MD() {
     rm -rf slurm*
     rm -rf OUTCAR.gz
     mv CONTCAR POSCAR
-    echo "Files organized into directory $dir and CONTCAR moved to POSCAR."
 }
 
 continue_MD
