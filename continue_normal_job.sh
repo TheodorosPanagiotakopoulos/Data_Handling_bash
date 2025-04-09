@@ -5,7 +5,6 @@ continue_MD() {
         echo "CONTCAR not found. Nothing to do."
         return
     fi
-
     num=$(( $(ls -d RUN*/ 2>/dev/null | wc -l) + 1 ))
     dir="RUN$num"
     mkdir "$dir"
